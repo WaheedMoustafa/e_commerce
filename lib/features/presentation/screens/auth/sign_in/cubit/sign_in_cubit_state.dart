@@ -1,4 +1,4 @@
-import '../../../base/base_api_state.dart';
+import '../../../../../base/base_api_state.dart';
 
 class SignInCubitState{
   late BaseApiState loginState;

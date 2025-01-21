@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/utils/color_app.dart';
 import 'package:e_commerce/core/utils/images_app.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/main_text_field.dart';
+import '../../../../../core/widgets/main_text_field.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});

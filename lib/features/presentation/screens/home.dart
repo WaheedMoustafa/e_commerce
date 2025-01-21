@@ -1,11 +1,13 @@
 import 'package:e_commerce/core/utils/color_app.dart';
 import 'package:e_commerce/core/utils/images_app.dart';
 import 'package:e_commerce/features/di/di.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit.dart';
-import 'package:e_commerce/features/presentation/screens/tabs/account.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/cart/cart.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/favourites/wish_list.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/home_tab/cubit/home_cubit.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/account/account.dart';
 import 'package:e_commerce/features/presentation/screens/tabs/categories/categories.dart';
 import 'package:e_commerce/features/presentation/screens/tabs/home_tab/home_tab.dart';
-import 'package:e_commerce/features/presentation/screens/tabs/wish_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,6 +22,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int selectedIndex = 0 ;
   List<Widget> tabs = [HomeTab(),Categories(),WishList(),Account()];
+
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<CartCubit>(context).loadCart();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +86,13 @@ class _HomeState extends State<Home> {
                   prefixIcon: const Icon(Icons.search,color: AppColor.backgroundColor,)
                        )),
               ),
-              const Expanded(
+               Expanded(
                   flex: 1,
-                  child: Icon(Icons.shopping_cart_outlined,color: AppColor.backgroundColor,))
+                  child: InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, CartScreen.routeName);
+                      },
+                      child:const Icon(Icons.shopping_cart_outlined,color: AppColor.backgroundColor,)))
             ],
           ),
         ),

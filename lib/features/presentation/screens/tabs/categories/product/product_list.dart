@@ -1,13 +1,13 @@
 import 'package:e_commerce/core/widgets/product_list.dart';
 import 'package:e_commerce/features/base/base_api_state.dart';
 import 'package:e_commerce/features/di/di.dart';
-import 'package:e_commerce/features/presentation/cubit/product_list_cubit/product_list_cubit.dart';
-import 'package:e_commerce/features/presentation/cubit/product_list_cubit/product_list_cubit_state.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/categories/cubit/product_list_cubit.dart';
 import 'package:e_commerce/features/presentation/screens/tabs/categories/product/product_details/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/widgets/home_screen_app_bar.dart';
 import '../../../../../domain/mappers/product_mapper.dart';
+import '../cubit/product_list_cubit_state.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key });

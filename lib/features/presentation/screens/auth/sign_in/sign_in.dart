@@ -4,13 +4,14 @@ import 'package:e_commerce/core/widgets/loading_widget.dart';
 import 'package:e_commerce/features/base/base_api_state.dart';
 import 'package:e_commerce/features/di/di.dart';
 import 'package:e_commerce/features/failure/failure.dart';
-import 'package:e_commerce/features/presentation/cubit/sign_in_cubit/sign_in_cubit.dart';
-import 'package:e_commerce/features/presentation/cubit/sign_in_cubit/sign_in_cubit_state.dart';
+import 'package:e_commerce/features/presentation/screens/auth/sign_in/cubit/sign_in_cubit.dart';
 import 'package:e_commerce/features/presentation/screens/home.dart';
-import 'package:e_commerce/features/presentation/screens/sign_up.dart';
+import 'package:e_commerce/features/presentation/screens/auth/sign_up/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'cubit/sign_in_cubit_state.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});

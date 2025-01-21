@@ -1,17 +1,17 @@
 import 'package:e_commerce/features/di/di.dart';
-import 'package:e_commerce/features/presentation/cubit/sign_up_cubit/sign_up_cubit.dart';
-import 'package:e_commerce/features/presentation/cubit/sign_up_cubit/sign_up_cubit_state.dart';
+import 'package:e_commerce/features/presentation/screens/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:e_commerce/features/presentation/screens/home.dart';
-import 'package:e_commerce/features/presentation/screens/sign_in.dart';
+import 'package:e_commerce/features/presentation/screens/auth/sign_in/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/color_app.dart';
-import '../../../core/utils/images_app.dart';
-import '../../../core/widgets/loading_widget.dart';
-import '../../base/base_api_state.dart';
-import '../../failure/failure.dart';
+import '../../../../../core/utils/color_app.dart';
+import '../../../../../core/utils/images_app.dart';
+import '../../../../../core/widgets/loading_widget.dart';
+import '../../../../base/base_api_state.dart';
+import '../../../../failure/failure.dart';
+import 'cubit/sign_up_cubit_state.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

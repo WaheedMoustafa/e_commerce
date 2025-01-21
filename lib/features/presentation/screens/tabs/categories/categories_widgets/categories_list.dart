@@ -1,11 +1,12 @@
 import 'package:e_commerce/core/utils/color_app.dart';
 import 'package:e_commerce/features/base/base_api_state.dart';
 import 'package:e_commerce/features/domain/models/category.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit_state.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/home_tab/cubit/home_cubit.dart';
 import 'package:e_commerce/features/presentation/screens/tabs/categories/categories_widgets/categories_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../home_tab/cubit/home_cubit_state.dart';
 
 class CategoriesList extends StatefulWidget {
   const CategoriesList({super.key});

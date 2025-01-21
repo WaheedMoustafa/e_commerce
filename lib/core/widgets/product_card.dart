@@ -1,7 +1,11 @@
 
 import 'package:e_commerce/core/utils/color_app.dart';
+import 'package:e_commerce/features/domain/mappers/product_mapper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/base/base_api_state.dart';
+import '../../features/presentation/screens/tabs/cart/cubit/cart_cubit.dart';
 import '../utils/images_app.dart';
 
 class ProductCard extends StatelessWidget {
@@ -11,10 +15,12 @@ class ProductCard extends StatelessWidget {
   final String description;
   final num priceBeforeDiscound;
   final num rating;
+  final Product product ;
 
   const ProductCard({
     super.key,
     required this.image,
+    required this.product,
     required this.title,
     required this.price,
     required this.rating,
@@ -185,13 +191,26 @@ class ProductCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        InkWell(
-                          onTap: () {},
-                          child: const Icon(
-                            Icons.add_circle_rounded,
-                            color: AppColor.primary,
-                            size: 36,
-                          ),
+                        BlocBuilder<CartCubit,BaseApiState>(
+                          builder: (context , state){
+                            CartCubit cubit = BlocProvider.of(context, listen: false);
+                            bool isInCart = cubit.isInCart(product.id);
+                            return  InkWell(
+                              onTap: () {
+                                if(isInCart){
+                                  cubit.removeFromCart(product.id);
+                                }else{
+                                  cubit.addToCart(product.id);
+                                }
+                              },
+                              child: Icon(
+                                isInCart ? Icons.remove_circle_rounded : Icons.add_circle_rounded,
+                                color: AppColor.primary,
+                                size: 26,
+                              ),
+                            );
+                          },
+
                         ),
                       ],
                     ),

@@ -12,6 +12,8 @@ class ProductDM {
   final num price;
   final String imageCover;
   final num ratingsAverage;
+  final num totalPrice ;
+  final num totalItemsInCart ;
 
   ProductDM({
     required this.sold,
@@ -25,5 +27,7 @@ class ProductDM {
     required this.price,
     required this.imageCover,
     required this.ratingsAverage,
+    this.totalPrice = 0,
+    this.totalItemsInCart = 0,
   });
 }

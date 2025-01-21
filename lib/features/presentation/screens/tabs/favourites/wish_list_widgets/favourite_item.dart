@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/features/domain/mappers/product_mapper.dart';
 import 'package:e_commerce/features/presentation/screens/tabs/categories/product/product_details/product_details.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/color_app.dart';
-import '../../../../../core/widgets/heart_button.dart';
+import '../../../../../../core/utils/color_app.dart';
+import '../../../../../../core/widgets/heart_button.dart';
 import 'add_to_cart_button.dart';
 import 'favourite_item_details.dart';
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({super.key, required this.product});
-  final Map<String, dynamic> product;
+  final Map<String,dynamic> product;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -59,7 +60,8 @@ class FavoriteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                HeartButton(onTap: () {
+                HeartButton(
+                    onTap: () {
                   //TODO:remove product from wish list
                 }),
                 const SizedBox(height: 14),

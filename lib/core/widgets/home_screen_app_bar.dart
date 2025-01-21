@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/utils/images_app.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/presentation/screens/cart.dart';
+import '../../features/presentation/screens/tabs/favourites/wish_list.dart';
 import '../utils/color_app.dart';
 
 
@@ -67,7 +67,7 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 IconButton(
                     onPressed: () =>
-                        Navigator.pushNamed(context, Cart.routeName),
+                        Navigator.pushNamed(context, WishList.routeName),
                     icon: const Icon(
                       Icons.add_shopping_cart,
                       color: AppColor.primary,

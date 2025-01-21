@@ -1,6 +1,7 @@
 import 'package:e_commerce/features/base/base_api_state.dart';
 import 'package:injectable/injectable.dart';
-import '../../../domain/models/category.dart';
+
+import '../../../../../domain/models/category.dart';
 
 
 @injectable

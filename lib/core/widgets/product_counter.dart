@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../utils/color_app.dart';
 
 class ProductCounter extends StatelessWidget {
-  final int productCounter;
-  final void Function(int) add;
-  final void Function(int) remove;
+  final num productCounter;
+  final void Function(num) add;
+  final void Function(num) remove;
   const ProductCounter(
       {super.key,
       required this.add,

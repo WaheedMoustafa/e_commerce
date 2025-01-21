@@ -4,12 +4,12 @@ import 'package:e_commerce/features/domain/models/category.dart';
 import 'package:e_commerce/features/domain/usecase/get_categories_usecase.dart';
 import 'package:e_commerce/features/domain/usecase/get_products_usecase.dart';
 import 'package:e_commerce/features/failure/failure.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit_state.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/usecase/get_sub_categories_on_category_usecase.dart';
+import '../../../../../domain/usecase/get_sub_categories_on_category_usecase.dart';
+import 'home_cubit_state.dart';
 
 @injectable
 class HomeCubit extends Cubit<HomeCubitState>{

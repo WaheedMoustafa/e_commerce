@@ -3,17 +3,15 @@ import 'package:e_commerce/core/utils/color_app.dart';
 import 'package:e_commerce/core/utils/images_app.dart';
 import 'package:e_commerce/core/widgets/product_list.dart';
 import 'package:e_commerce/features/base/base_api_state.dart';
-import 'package:e_commerce/features/di/di.dart';
 import 'package:e_commerce/features/domain/mappers/product_mapper.dart';
 import 'package:e_commerce/features/domain/models/category.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit.dart';
-import 'package:e_commerce/features/presentation/cubit/home_cubit/home_cubit_state.dart';
-import 'package:e_commerce/features/presentation/screens/tabs/categories/categories.dart';
-import 'package:e_commerce/features/presentation/screens/tabs/categories/product/product_list.dart';
+import 'package:e_commerce/features/presentation/screens/tabs/home_tab/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/home_widgets/categories_list_widget.dart';
 import '../../../../../core/widgets/home_widgets/custom_ads_widget.dart';
+import '../cart/cubit/cart_cubit.dart';
+import 'cubit/home_cubit_state.dart';
 
 class HomeTab extends StatefulWidget {
    const HomeTab({super.key});
@@ -58,51 +56,72 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(7),
-          padding: const EdgeInsets.all(7),
-          child:  Column(
-            children: [
-              CustomAdsWidget(adsImages: adsImages, currentIndex: currentIndex, timer: timer,),
-              const SizedBox(height: 10,),
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BlocListener<CartCubit,BaseApiState>(
+        listener: (context,state){
+          if(state is BaseLoadingState){
+            buildShowDialog(context);
+          }else{
+            hideLoading(context);
+          }
+        },
+        child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.all(7),
+              padding: const EdgeInsets.all(7),
+              child:  Column(
                 children: [
-                const Text('Categories',style: TextStyle(color: AppColor.primary),),
-                InkWell(
-                    onTap: (){
+                  CustomAdsWidget(adsImages: adsImages, currentIndex: currentIndex, timer: timer,),
+                  const SizedBox(height: 10,),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    const Text('Categories',style: TextStyle(color: AppColor.primary),),
+                    InkWell(
+                        onTap: (){
 
-                    },
-                    child: const Text('view all',style: TextStyle(color: AppColor.primary),)),
-              ],),
-              const SizedBox(height: 10,),
-              SizedBox(
-                height: 270,
-                child: buildGridView(),
+                        },
+                        child: const Text('view all',style: TextStyle(color: AppColor.primary),)),
+                  ],),
+                  const SizedBox(height: 10,),
+                  SizedBox(
+                    height: 270,
+                    child: buildGridView(),
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Most selling Products',style: TextStyle(color: AppColor.primary),),
+                      InkWell(
+                          onTap: (){
+                          },
+                          child: const Text('view all',style: TextStyle(color: AppColor.primary),)),
+                    ],),
+                  const SizedBox(height: 10,),
+                  buildProductList(),
+
+
+
+                ],
               ),
-              const SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Most selling Products',style: TextStyle(color: AppColor.primary),),
-                  InkWell(
-                      onTap: (){
-                      },
-                      child: const Text('view all',style: TextStyle(color: AppColor.primary),)),
-                ],),
-              const SizedBox(height: 10,),
-              buildProductList(),
-
-
-
-            ],
+            ),
           ),
-        ),
       ),
+
 
     );
   }
+
+  Future<dynamic> buildShowDialog(BuildContext context) =>
+      showDialog(context: context ,
+          barrierDismissible: false,
+          builder:(_)=> const AlertDialog(content: Row(
+            children: [
+              Text("Loading..."),
+              Spacer(),
+              CircularProgressIndicator(),
+            ],
+          ),) );
 
   Widget buildProductList() {
     return BlocBuilder<HomeCubit,HomeCubitState>(
@@ -158,5 +177,14 @@ class _HomeTabState extends State<HomeTab> {
       },
 
     );
+  }
+
+  _isThereCurrentDialog(BuildContext context){
+    ModalRoute.of(context)?.isCurrent != true ;
+  }
+
+  void hideLoading(BuildContext context) {
+    if(! _isThereCurrentDialog(context)) return;
+    Navigator.pop(context);
   }
 }
